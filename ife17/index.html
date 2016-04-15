@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	</style>
+</head>
+<body>
+	<div id="operate" class="but">
+		<input type="text">
+		<button>左进</button>
+		<button>右进</button>
+		<button>左出</button>
+		<button>右出</button>
+	</div>
+	<div class="lists" id="nums">
+	</div>
+	<script>
+		var btns=document.getElementById("operate").getElementsByTagName("button");
+		var inp = document.getElementById("operate").getElementsByTagName("input")[0];
+		var num = document.getElementById("nums");
+		var arr=[];
+		for(var i=0; i<btns.length; i++){
+			btns[i].index=i;
+			btns[i].onclick=function () {
+				// body...
+				var data = "<span>"+inp.value+"</span>";
+				switch(this.index){
+					case 0:
+						arr.unshift(data);
+						break;
+					case 1:
+						arr.push(data);
+						break;
+					case 2:
+						arr.shift();
+						break;
+					case 3:
+						arr.pop()
+				}
+				num.innerHTML=arr;
+
+			};
+		}
+		num.addEventListener("click",function(e){
+			var index=[].indexOf.call(e.target.parentNode.childNodes,e.target);
+			arr.splice(index,1);
+			num.innerHTML=arr;
+		})
+	</script>
+</body>
+</html>
